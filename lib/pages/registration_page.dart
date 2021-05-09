@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/step_progress_bar.dart';
+import '../widgets/create_email_view.dart';
 
 import '../models/content.dart';
 
@@ -23,7 +24,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       Content(
         title: 'Create Email',
         isActive: _currentStep > 0,
-        child: Container(),
+        child: CreateEmailView(goNextStep),
       ),
       Content(
         title: 'Create Password',
