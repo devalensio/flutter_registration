@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -21,33 +23,61 @@ class _VideoCallViewState extends State<VideoCallView> {
   String _selectedDate;
   String _selectedTime;
 
+  void _androidDatePicker() async {
+    final DateTime pickerDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime(2021, 12, 30),
+    );
+
+    if (pickerDate != null) {
+      print(pickerDate);
+      setState(() {
+        _selectedDate =
+            '${pickerDate.day.toString()}/${pickerDate.month.toString()}/${pickerDate.year.toString()}';
+      });
+    }
+  }
+
+  void _androidTimePicker() async {
+    final TimeOfDay pickerTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+    if (pickerTime != null) {
+      setState(() {
+        _selectedTime =
+            '${pickerTime.hour.toString()} : ${pickerTime.minute.toString()}';
+      });
+    }
+  }
+
   Widget _iosDateTimePicker(String type) {
     return CupertinoDatePicker(
       initialDateTime: DateTime.now(),
-      onDateTimeChanged: (DateTime newdate) {
-        setState(() {
-          if (type == 'date') {
-            _selectedDate =
-                '${newdate.day.toString()}/${newdate.month.toString()}/${newdate.year.toString()}';
-            return;
-          }
-          _selectedTime =
-              '${newdate.hour.toString()} : ${newdate.minute.toString()}';
-        });
-      },
       maximumDate: DateTime(2021, 12, 30),
       minimumYear: DateTime.now().year,
-      maximumYear: DateTime.now().year + 10,
+      maximumYear: DateTime.now().year,
       minuteInterval: 1,
       mode: type == 'date'
           ? CupertinoDatePickerMode.date
           : CupertinoDatePickerMode.time,
+      onDateTimeChanged: (DateTime pickerDate) {
+        setState(() {
+          if (type == 'date') {
+            _selectedDate =
+                '${pickerDate.day.toString()}/${pickerDate.month.toString()}/${pickerDate.year.toString()}';
+            return;
+          }
+          _selectedTime =
+              '${pickerDate.hour.toString()} : ${pickerDate.minute.toString()}';
+        });
+      },
     );
   }
 
-  Future<void> bottomSheet(
-    BuildContext context,
-    Widget child) {
+  Future<void> _bottomSheet(BuildContext context, Widget child) {
     return showModalBottomSheet(
       isScrollControlled: false,
       shape: RoundedRectangleBorder(
@@ -119,7 +149,9 @@ class _VideoCallViewState extends State<VideoCallView> {
             ),
             GestureDetector(
               onTap: () {
-                bottomSheet(context, _iosDateTimePicker('date'));
+                !Platform.isIOS
+                    ? _bottomSheet(context, _iosDateTimePicker('date'))
+                    : _androidDatePicker();
               },
               child: Dropdown(
                 placeholder: 'Date',
@@ -133,7 +165,9 @@ class _VideoCallViewState extends State<VideoCallView> {
             ),
             GestureDetector(
               onTap: () {
-                bottomSheet(context, _iosDateTimePicker('time'));
+                !Platform.isIOS
+                    ? _bottomSheet(context, _iosDateTimePicker('time'))
+                    : _androidTimePicker();
               },
               child: Dropdown(
                 placeholder: 'Time',
