@@ -7,6 +7,7 @@ import '../widgets/personal_info_view.dart';
 import '../widgets/video_call_view.dart';
 
 import '../models/content.dart';
+import '../models/user.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -15,9 +16,10 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   int _currentStep = 0;
+  User _user;
 
   void goNextStep() {
-    this.setState(() {
+    setState(() {
       _currentStep++;
     });
   }

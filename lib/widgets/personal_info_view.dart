@@ -79,7 +79,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
               placeholder: 'Goal for activation',
               value: _goalInput,
               options: goalList,
-              onChanged: (String value) => this.setState(() {
+              onChanged: (String value) => setState(() {
                 _goalInput = value;
               }),
             ),
@@ -90,7 +90,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
               placeholder: 'Monthly Income',
               value: _incomeInput,
               options: monthlyIncomeList,
-              onChanged: (String value) => this.setState(() {
+              onChanged: (String value) => setState(() {
                 _incomeInput = value;
               }),
             ),
@@ -101,7 +101,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
               placeholder: 'Monthly expense',
               value: _expenseInput,
               options: monthlyExpenseList,
-              onChanged: (String value) => this.setState(() {
+              onChanged: (String value) => setState(() {
                 _expenseInput = value;
               }),
             ),
