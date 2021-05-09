@@ -147,7 +147,7 @@ class _VideoCallViewState extends State<VideoCallView> {
             ),
             GestureDetector(
               onTap: () {
-                !Platform.isIOS
+                Platform.isIOS
                     ? _bottomSheet(context, _iosDateTimePicker('date'))
                     : _androidDatePicker();
               },
@@ -163,7 +163,7 @@ class _VideoCallViewState extends State<VideoCallView> {
             ),
             GestureDetector(
               onTap: () {
-                !Platform.isIOS
+                Platform.isIOS
                     ? _bottomSheet(context, _iosDateTimePicker('time'))
                     : _androidTimePicker();
               },
