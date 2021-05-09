@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/step_progress_bar.dart';
 import '../widgets/create_email_view.dart';
+import '../widgets/create_password_view.dart';
 
 import '../models/content.dart';
 

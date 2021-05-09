@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class PasswordScreen extends StatelessWidget {
+class CreatePasswordView extends StatelessWidget {
   final Function handleSubmit;
 
-  PasswordScreen(
+  CreatePasswordView(
     this.handleSubmit,
   );
 
