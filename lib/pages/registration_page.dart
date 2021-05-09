@@ -22,7 +22,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     goal: '',
     monthlyIncome: '',
     monthlyExpense: '',
-    dateTime: DateTime.now(),
+    dateTime: null,
   );
 
   void goNextStep() {
