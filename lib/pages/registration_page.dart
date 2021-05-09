@@ -30,9 +30,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       Content(
         title: 'Create Password',
         isActive: _currentStep > 1,
-        child: Container(
-          child: Container(),
-        ),
+        child: CreatePasswordView(goNextStep),
       ),
       Content(
         title: 'Personal Information',
