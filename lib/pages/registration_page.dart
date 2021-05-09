@@ -55,7 +55,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     final AppBar appBar = AppBar(
-      backgroundColor: Colors.grey,
+      backgroundColor: const Color(0xff447cf4),
+      elevation: 0,
       title: const Text('Create Account'),
       leading: _currentStep > 0
           ? IconButton(
@@ -70,7 +71,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     final double totalHeight = (mediaQuery.size.height -
         mediaQuery.padding.top -
         appBar.preferredSize.height -
-        MediaQuery.of(context).viewInsets.bottom -
+        // MediaQuery.of(context).viewInsets.bottom -
         120);
 
     return Scaffold(
