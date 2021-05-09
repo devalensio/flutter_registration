@@ -9,11 +9,10 @@ import './dropdown.dart';
 
 class VideoCallView extends StatefulWidget {
   static final _formKey = GlobalKey<FormState>();
-  final Function handleSubmit;
+  final Function saveData;
+  final DateTime userDateTime;
 
-  VideoCallView(
-    this.handleSubmit,
-  );
+  const VideoCallView({@required this.saveData, @required this.userDateTime});
 
   @override
   _VideoCallViewState createState() => _VideoCallViewState();
@@ -34,7 +33,7 @@ class _VideoCallViewState extends State<VideoCallView> {
     if (pickerDate != null) {
       setState(() {
         _selectedDate =
-            '${pickerDate.day.toString()}/${pickerDate.month.toString()}/${pickerDate.year.toString()}';
+            '${pickerDate.year.toString()}-${pickerDate.month.toString().padLeft(2, '0')}-${pickerDate.day.toString().padLeft(2, '0')}';
       });
     }
   }
@@ -47,7 +46,7 @@ class _VideoCallViewState extends State<VideoCallView> {
     if (pickerTime != null) {
       setState(() {
         _selectedTime =
-            '${pickerTime.hour.toString()} : ${pickerTime.minute.toString()}';
+            '${pickerTime.hour.toString().padLeft(2, '0')}:${pickerTime.minute.toString().padLeft(2, '0')}';
       });
     }
   }
@@ -66,11 +65,11 @@ class _VideoCallViewState extends State<VideoCallView> {
         setState(() {
           if (type == 'date') {
             _selectedDate =
-                '${pickerDate.day.toString()}/${pickerDate.month.toString()}/${pickerDate.year.toString()}';
+                '${pickerDate.year.toString()}-${pickerDate.month.toString().padLeft(2, '0')}-${pickerDate.day.toString().padLeft(2, '0')}';
             return;
           }
           _selectedTime =
-              '${pickerDate.hour.toString()} : ${pickerDate.minute.toString()}';
+              '${pickerDate.hour.toString().padLeft(2, '0')}:${pickerDate.minute.toString().padLeft(2, '0')}';
         });
       },
     );
@@ -108,21 +107,31 @@ class _VideoCallViewState extends State<VideoCallView> {
           ),
           onPressed: () {
             if (VideoCallView._formKey.currentState.validate()) {
-              final snackBar = SnackBar(
-                content: Text('Thanks for registering...'),
-                action: SnackBarAction(
-                  label: 'close',
-                  onPressed: () {},
-                ),
-              );
-
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              final DateTime dt =
+                  DateTime.parse('$_selectedDate $_selectedTime:00');
+              widget.saveData(dt);
             }
           },
           child: Text('Next'),
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    if (widget.userDateTime != null) {
+      final String date =
+          '${widget.userDateTime.year.toString()}-${widget.userDateTime.month.toString().padLeft(2, '0')}-${widget.userDateTime.day.toString().padLeft(2, '0')}';
+      final String time =
+          '${widget.userDateTime.hour.toString().padLeft(2, '0')}:${widget.userDateTime.minute.toString().padLeft(2, '0')}';
+
+      setState(() {
+        _selectedDate = date;
+        _selectedTime = time;
+      });
+    }
+    super.initState();
   }
 
   @override

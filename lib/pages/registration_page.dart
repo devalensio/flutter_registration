@@ -66,6 +66,25 @@ class _RegistrationPageState extends State<RegistrationPage> {
     goNextStep();
   }
 
+  void _addUserDateTIme(DateTime dateTime) {
+    final currentUser = _user;
+    currentUser.dateTime = dateTime;
+
+    setState(() {
+      _user = currentUser;
+    });
+
+    final snackBar = SnackBar(
+      content: Text('Thanks for registering...'),
+      action: SnackBarAction(
+        label: 'close',
+        onPressed: () {},
+      ),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   List<Content> _mySteps() {
     List<Content> steps = [
       Content(
@@ -97,7 +116,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
       Content(
         title: 'Schedule Video Call',
         isActive: _currentStep > 3,
-        child: VideoCallView(goNextStep),
+        child: VideoCallView(
+          saveData: _addUserDateTIme,
+          userDateTime: _user.dateTime,
+        ),
       ),
     ];
 
