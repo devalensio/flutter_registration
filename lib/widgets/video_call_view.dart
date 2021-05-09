@@ -14,6 +14,51 @@ class VideoCallView extends StatelessWidget {
 
   final deviceTypes = ["Mac", "Windows", "Mobile"];
 
+  Widget _iosDatePicker() {
+    return CupertinoDatePicker(
+      initialDateTime: DateTime.now(),
+      onDateTimeChanged: (DateTime newdate) {
+        print(newdate);
+        // setState(() {
+        //   dateTime = newdate.day.toString() +
+        //       '/' +
+        //       newdate.month.toString() +
+        //       '/' +
+        //       newdate.year.toString() +
+        //       ' ' +
+        //       newdate.hour.toString() +
+        //       ' hrs ' +
+        //       newdate.minute.toString() +
+        //       ' mins';
+        // });
+      },
+      // use24hFormat: true,
+      maximumDate: DateTime(2021, 12, 30),
+      minimumYear: DateTime.now().year,
+      maximumYear: DateTime.now().year + 10,
+      minuteInterval: 1,
+      mode: CupertinoDatePickerMode.date,
+    );
+  }
+
+  Future<void> bottomSheet(BuildContext context, Widget child,
+      {double height}) {
+    return showModalBottomSheet(
+      isScrollControlled: false,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(13),
+          topRight: Radius.circular(13),
+        ),
+      ),
+      backgroundColor: Colors.white,
+      context: context,
+      builder: (context) => Container(
+          height: height ?? MediaQuery.of(context).size.height / 3,
+          child: child),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,7 +109,7 @@ class VideoCallView extends StatelessWidget {
                   backgroundColor: MaterialStateProperty.all(Colors.blue[200]),
                 ),
                 onPressed: () {
-                  print('deva');
+                  bottomSheet(context, _iosDatePicker());
                 },
                 child: Text('Next'),
               ),
