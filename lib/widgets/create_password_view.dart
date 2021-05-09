@@ -7,6 +7,31 @@ class CreatePasswordView extends StatelessWidget {
     this.handleSubmit,
   );
 
+  List<Map<String, Object>> get _complexityItems {
+    return [
+      {
+        'title': 'a',
+        'subTitle': 'Lowercase',
+        'isPassed': false,
+      },
+      {
+        'title': 'A',
+        'subTitle': 'Uppercase',
+        'isPassed': false,
+      },
+      {
+        'title': '123',
+        'subTitle': 'Number',
+        'isPassed': false,
+      },
+      {
+        'title': '9+',
+        'subTitle': 'Characters',
+        'isPassed': false,
+      },
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
