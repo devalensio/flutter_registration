@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/step_progress_bar.dart';
+
 import '../models/content.dart';
 
 class RegistrationPage extends StatefulWidget {
@@ -81,7 +83,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
               Container(
                 height: 100,
                 alignment: Alignment.center,
-                child: Container(),
+                child: StepProgressBar(
+                  contents: contentSteps,
+                  activeColor: Colors.green[300],
+                  inactiveColor: Colors.grey[300],
+                  currentStep: _currentStep,
+                  width: MediaQuery.of(context).size.width,
+                ),
               ),
               Container(
                 height: totalHeight,
