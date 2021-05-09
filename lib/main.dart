@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         textTheme: ThemeData.light().textTheme.copyWith(
               headline1: TextStyle(
                 color: Colors.white,
-                fontSize: 32,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
               headline2: TextStyle(
