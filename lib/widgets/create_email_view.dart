@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class EmailScreen extends StatelessWidget {
+class CreateEmailView extends StatelessWidget {
   final Function handleSubmit;
 
-  EmailScreen(
+  CreateEmailView(
     this.handleSubmit,
   );
 
