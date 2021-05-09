@@ -73,9 +73,9 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
 
   void _passwordChecker(String password) {
     this.setState(() {
-      _hasUppercase = password.contains(new RegExp(r'[A-Z]'));
-      _hasDigits = password.contains(new RegExp(r'[0-9]'));
-      _hasLowercase = password.contains(new RegExp(r'[a-z]'));
+      _hasUppercase = password.contains(RegExp(r'[A-Z]'));
+      _hasDigits = password.contains(RegExp(r'[0-9]'));
+      _hasLowercase = password.contains(RegExp(r'[a-z]'));
       _hasMinLength = password.length > 8;
       _passwordInput = password;
     });
