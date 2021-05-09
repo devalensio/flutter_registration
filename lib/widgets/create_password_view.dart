@@ -87,6 +87,30 @@ class CreatePasswordView extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
+          Text('Complexity', style: Theme.of(context).textTheme.bodyText1),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: _complexityItems
+                .map(
+                  (item) => Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          item['title'],
+                          style: Theme.of(context).textTheme.headline2,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(item['subTitle']),
+                      ],
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
           Spacer(),
           Container(
             width: double.infinity,
