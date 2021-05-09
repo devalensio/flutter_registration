@@ -108,7 +108,15 @@ class _VideoCallViewState extends State<VideoCallView> {
           ),
           onPressed: () {
             if (VideoCallView._formKey.currentState.validate()) {
-              widget.handleSubmit();
+              final snackBar = SnackBar(
+                content: Text('Thanks for registering...'),
+                action: SnackBarAction(
+                  label: 'close',
+                  onPressed: () {},
+                ),
+              );
+
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
             }
           },
           child: Text('Next'),
