@@ -27,6 +27,7 @@ class CreateEmailView extends StatelessWidget {
           borderSide: BorderSide(color: Colors.grey[400]),
         ),
       ),
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (v) {
         if (!v.isValidEmail) return 'Please enter a valid email';
         return null;

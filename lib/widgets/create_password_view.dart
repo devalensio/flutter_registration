@@ -106,6 +106,7 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
           ),
         ),
       ),
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (v) {
         if (!v.isValidPassword) return 'Password must include the complexity.';
         return null;
