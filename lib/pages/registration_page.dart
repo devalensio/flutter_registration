@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/step_progress_bar.dart';
 import '../widgets/create_email_view.dart';
 import '../widgets/create_password_view.dart';
+import '../widgets/personal_info_view.dart';
 
 import '../models/content.dart';
 
@@ -35,7 +36,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       Content(
         title: 'Personal Information',
         isActive: _currentStep > 2,
-        child: Container(),
+        child: PersonalInfoView(goNextStep),
       ),
       Content(
         title: 'Schedule Video Call',
