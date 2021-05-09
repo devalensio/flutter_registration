@@ -42,7 +42,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       Content(
         title: 'Schedule Video Call',
         isActive: _currentStep > 3,
-        child: PersonalInfoView(goNextStep),
+        child: VideoCallView(goNextStep),
       ),
     ];
 
