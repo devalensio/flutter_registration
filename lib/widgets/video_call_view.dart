@@ -137,7 +137,7 @@ class _VideoCallViewState extends State<VideoCallView> {
           children: [
             PulsatingCircleIcon(),
             const SizedBox(
-              height: 30,
+              height: 15,
             ),
             Text(
               'Schedule Video Call',
