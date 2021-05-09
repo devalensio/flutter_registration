@@ -140,7 +140,6 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
 
   @override
   Widget build(BuildContext context) {
-    print(complexityText);
     return Container(
       width: double.infinity,
       child: Form(

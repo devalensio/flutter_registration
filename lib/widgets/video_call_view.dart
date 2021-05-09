@@ -32,7 +32,6 @@ class _VideoCallViewState extends State<VideoCallView> {
     );
 
     if (pickerDate != null) {
-      print(pickerDate);
       setState(() {
         _selectedDate =
             '${pickerDate.day.toString()}/${pickerDate.month.toString()}/${pickerDate.year.toString()}';
@@ -120,7 +119,6 @@ class _VideoCallViewState extends State<VideoCallView> {
 
   @override
   Widget build(BuildContext context) {
-    print(_selectedDate);
     return Container(
       width: double.infinity,
       child: Form(
