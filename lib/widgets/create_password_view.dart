@@ -194,7 +194,7 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
                                     borderRadius: BorderRadius.circular(100),
                                     color: Colors.green[300],
                                   ),
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.check,
                                     color: Colors.white,
                                   ),

@@ -17,7 +17,7 @@ class CreateEmailView extends StatelessWidget {
         hintText: 'Email',
         filled: true,
         fillColor: Colors.grey[200],
-        prefixIcon: Icon(Icons.email),
+        prefixIcon: const Icon(Icons.email),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,

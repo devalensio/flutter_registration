@@ -51,7 +51,7 @@ class _PulsatingCircleIconState extends State<PulsatingCircleIcon>
                     )
                 ],
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.calendar_today_rounded,
                 color: Colors.white,
                 size: 26,
