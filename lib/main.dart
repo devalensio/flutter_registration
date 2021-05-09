@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
               bodyText1: TextStyle(
                 color: Colors.white,
                 fontSize: 14,
-                fontWeight: FontWeight.bold,
               ),
               button: TextStyle(
                 color: Colors.blue[100],
