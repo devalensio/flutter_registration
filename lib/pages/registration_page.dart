@@ -4,6 +4,7 @@ import '../widgets/step_progress_bar.dart';
 import '../widgets/create_email_view.dart';
 import '../widgets/create_password_view.dart';
 import '../widgets/personal_info_view.dart';
+import '../widgets/video_call_view.dart';
 
 import '../models/content.dart';
 
@@ -41,7 +42,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       Content(
         title: 'Schedule Video Call',
         isActive: _currentStep > 3,
-        child: Container(),
+        child: PersonalInfoView(goNextStep),
       ),
     ];
 
