@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 import './dropdown.dart';
 
 class PersonalInfoView extends StatefulWidget {
-  final Function handleSubmit;
+  final Function saveData;
+  final String userGoal;
+  final String userIncome;
+  final String userExpense;
 
-  PersonalInfoView(
-    this.handleSubmit,
-  );
+  PersonalInfoView({
+    this.saveData,
+    this.userGoal,
+    this.userIncome,
+    this.userExpense,
+  });
 
   static final _formKey = GlobalKey<FormState>();
 
@@ -17,15 +23,11 @@ class PersonalInfoView extends StatefulWidget {
 
 class _PersonalInfoViewState extends State<PersonalInfoView> {
   final goalList = ["Buy a House", "Buy a Car", "Marriage"];
-
   final monthlyIncomeList = ['1.000.000', '5.000.000', '10.000.000'];
-
   final monthlyExpenseList = ['1.000.000', '2.000.000', '3.000.000'];
 
   String _goalInput;
-
   String _incomeInput;
-
   String _expenseInput;
 
   Widget _submitButton() {
@@ -42,13 +44,27 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
           ),
           onPressed: () {
             if (PersonalInfoView._formKey.currentState.validate()) {
-              widget.handleSubmit();
+              widget.saveData(_goalInput, _incomeInput, _expenseInput);
             }
           },
           child: Text('Next'),
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    if (widget.userGoal.isNotEmpty &&
+        widget.userIncome.isNotEmpty &&
+        widget.userExpense.isNotEmpty) {
+      setState(() {
+        _goalInput = widget.userGoal;
+        _incomeInput = widget.userIncome;
+        _expenseInput = widget.userExpense;
+      });
+    }
+    super.initState();
   }
 
   @override

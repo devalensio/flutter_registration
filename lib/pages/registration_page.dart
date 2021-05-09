@@ -19,9 +19,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
   User _user = User(
     email: '',
     password: '',
+    goal: '',
     monthlyIncome: '',
     monthlyExpense: '',
-    goal: '',
     dateTime: DateTime.now(),
   );
 
@@ -53,6 +53,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
     goNextStep();
   }
 
+  void _addUserInfo(String goal, String monthlyIncome, String monthlyExpense) {
+    final currentUser = _user;
+    currentUser.goal = goal;
+    currentUser.monthlyIncome = monthlyIncome;
+    currentUser.monthlyExpense = monthlyExpense;
+
+    setState(() {
+      _user = currentUser;
+    });
+
+    goNextStep();
+  }
+
   List<Content> _mySteps() {
     List<Content> steps = [
       Content(
@@ -74,7 +87,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
       Content(
         title: 'Personal Information',
         isActive: _currentStep > 2,
-        child: PersonalInfoView(goNextStep),
+        child: PersonalInfoView(
+          saveData: _addUserInfo,
+          userGoal: _user.goal,
+          userIncome: _user.monthlyIncome,
+          userExpense: _user.monthlyExpense,
+        ),
       ),
       Content(
         title: 'Schedule Video Call',
