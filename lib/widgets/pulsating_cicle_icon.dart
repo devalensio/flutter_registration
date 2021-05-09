@@ -22,8 +22,14 @@ class _PulsatingCircleIconState extends State<PulsatingCircleIcon>
       end: 12.0,
     ).animate(_animationController);
 
-    _animationController.repeat();
+    _animationController.repeat(reverse: true);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.stop(canceled: true);
+    super.dispose();
   }
 
   @override
