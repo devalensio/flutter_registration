@@ -16,7 +16,14 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   int _currentStep = 0;
-  User _user;
+  User _user = User(
+    email: '',
+    password: '',
+    monthlyIncome: '',
+    monthlyExpense: '',
+    goal: '',
+    dateTime: DateTime.now(),
+  );
 
   void goNextStep() {
     setState(() {
@@ -24,17 +31,45 @@ class _RegistrationPageState extends State<RegistrationPage> {
     });
   }
 
+  void _addUserEmail(String email) {
+    final currentUser = _user;
+    currentUser.email = email;
+
+    setState(() {
+      _user = currentUser;
+    });
+
+    goNextStep();
+  }
+
+  void _addUserPassword(String password) {
+    final currentUser = _user;
+    currentUser.password = password;
+
+    setState(() {
+      _user = currentUser;
+    });
+
+    goNextStep();
+  }
+
   List<Content> _mySteps() {
     List<Content> steps = [
       Content(
         title: 'Create Email',
         isActive: _currentStep > 0,
-        child: CreateEmailView(goNextStep),
+        child: CreateEmailView(
+          saveData: _addUserEmail,
+          userEmail: _user.email,
+        ),
       ),
       Content(
         title: 'Create Password',
         isActive: _currentStep > 1,
-        child: CreatePasswordView(goNextStep),
+        child: CreatePasswordView(
+          saveData: _addUserPassword,
+          userPassword: _user.password,
+        ),
       ),
       Content(
         title: 'Personal Information',

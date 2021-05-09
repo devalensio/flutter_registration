@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import '../extensions/extension.dart';
 
 class CreatePasswordView extends StatefulWidget {
-  final Function handleSubmit;
+  final Function saveData;
+  final String userPassword;
 
-  CreatePasswordView(
-    this.handleSubmit,
-  );
+  CreatePasswordView({
+    this.saveData,
+    this.userPassword,
+  });
 
   @override
   _CreatePasswordViewState createState() => _CreatePasswordViewState();
@@ -49,6 +51,16 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
     ];
   }
 
+  @override
+  void initState() {
+    if (widget.userPassword.isNotEmpty) {
+      setState(() {
+        _passwordInput = widget.userPassword;
+      });
+    }
+    super.initState();
+  }
+
   String get complexityText {
     int complexityCounter = _complexityItems.fold(0, (previousValue, element) {
       if (element['isPassed']) {
@@ -84,6 +96,7 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
   Widget _passwordTextField() {
     return TextFormField(
       obscureText: _isObscure,
+      initialValue: widget.userPassword,
       decoration: InputDecoration(
         hintText: 'Create Password',
         filled: true,
@@ -129,7 +142,7 @@ class _CreatePasswordViewState extends State<CreatePasswordView> {
           ),
           onPressed: () {
             if (_formKey.currentState.validate()) {
-              widget.handleSubmit();
+              widget.saveData(_passwordInput);
             }
           },
           child: Text('Next'),

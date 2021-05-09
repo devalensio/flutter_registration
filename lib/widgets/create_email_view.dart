@@ -2,16 +2,36 @@ import 'package:flutter/material.dart';
 
 import '../extensions/extension.dart';
 
-class CreateEmailView extends StatelessWidget {
+class CreateEmailView extends StatefulWidget {
   static final _formKey = GlobalKey<FormState>();
-  final Function handleSubmit;
+  final Function saveData;
+  final String userEmail;
 
-  CreateEmailView(
-    this.handleSubmit,
-  );
+  CreateEmailView({
+    this.saveData,
+    this.userEmail,
+  });
+
+  @override
+  _CreateEmailViewState createState() => _CreateEmailViewState();
+}
+
+class _CreateEmailViewState extends State<CreateEmailView> {
+  String _emailInput = '';
+
+  @override
+  void initState() {
+    if (widget.userEmail.isNotEmpty) {
+      setState(() {
+        _emailInput = widget.userEmail;
+      });
+    }
+    super.initState();
+  }
 
   Widget _emailTextField() {
     return TextFormField(
+      initialValue: _emailInput,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         hintText: 'Email',
@@ -27,6 +47,9 @@ class CreateEmailView extends StatelessWidget {
           borderSide: BorderSide(color: Colors.grey[400]),
         ),
       ),
+      onChanged: (String value) => setState(() {
+        _emailInput = value;
+      }),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (v) {
         if (!v.isValidEmail) return 'Please enter a valid email';
@@ -48,8 +71,8 @@ class CreateEmailView extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            if (_formKey.currentState.validate()) {
-              handleSubmit();
+            if (CreateEmailView._formKey.currentState.validate()) {
+              widget.saveData(_emailInput);
             }
           },
           child: Text('Next'),
@@ -63,7 +86,7 @@ class CreateEmailView extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Form(
-        key: _formKey,
+        key: CreateEmailView._formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
