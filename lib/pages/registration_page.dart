@@ -55,6 +55,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     final AppBar appBar = AppBar(
+      backgroundColor: Colors.grey,
       title: const Text('Create Account'),
       leading: _currentStep > 0
           ? IconButton(

@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         accentColor: Colors.amber,
-        canvasColor: Colors.blue,
+        canvasColor: const Color(0xff447cf4),
         textTheme: ThemeData.light().textTheme.copyWith(
               headline1: TextStyle(
                 color: Colors.white,
