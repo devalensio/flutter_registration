@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import './pulsating_cicle_icon.dart';
+
 import './dropdown.dart';
 
 class VideoCallView extends StatelessWidget {
@@ -20,7 +22,7 @@ class VideoCallView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Icon(Icons.calendar_today),
+          PulsatingCircleIcon(),
           const SizedBox(
             height: 30,
           ),
